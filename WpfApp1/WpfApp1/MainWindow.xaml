@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="620.722" Width="735">
+        Title="MainWindow" Height="425.122" Width="418.2" ResizeMode="NoResize">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="33,30,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox x:Name="textBox1" TextWrapping="Wrap" Text="TextBox" VerticalScrollBarVisibility="Auto" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="150,20,20,500" MaxHeight="200"/>
-        <Grid x:Name="imgGrid" Margin="10,234,-0.2,10.2" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="auto" Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="900" />
-        <Button x:Name="convertBttn" Content="Choose path" HorizontalAlignment="Left" Margin="33,67,0,0" VerticalAlignment="Top" Width="88" Click="convertBttn_Click"/>
-        <TextBox x:Name="outputPath" HorizontalAlignment="Left" Height="23" Margin="150,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="559"/>
-        <Button x:Name="convertBttn1" Content="Convert to JPG" HorizontalAlignment="Left" Margin="33,109,0,0" VerticalAlignment="Top" Width="75" Click="convertBttn1_Click"/>
-        <ProgressBar x:Name="pBar" HorizontalAlignment="Left" Height="10" Margin="150,118,0,0" VerticalAlignment="Top" Width="559"/>
+        <Button Content="Odaberi slike" Margin="0,20,0,0" Width="75" Click="Button_Click" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkBox" Content="Konvertiraj u JPG" Margin="0,50
+                  ,0,0" IsChecked="True" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Top" Checked="CheckBox_Checked" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="noImg" Margin="0,100,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top"><Run Text="Odabrano je 0 slika."/></TextBlock>
+        <Button x:Name="galleryBttn" Content="Prikaži odabrane" Margin="140,224,140,108.8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Click="galleryBttn_Click"/>
+        <Image x:Name="doneImg" HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="135" Margin="140,260,140,0.2" Source="done.png"/>
+        <Grid VerticalAlignment="Center" Height="34" Width="189" Margin="111,135,112,226.2">
+            <TextBox x:Name="zipName" Margin="67,0,0,0" TextWrapping="Wrap" Text="eST.7z" TextAlignment="Center" VerticalContentAlignment="Stretch" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Spremi kao:" VerticalAlignment="Top" Height="28" TextAlignment="Center"/>
+
+        </Grid>
+        <Button Content="GO!" VerticalAlignment="Top" Width="76" Margin="0,190,0,0" Click="Button_Click_2" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

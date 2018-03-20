@@ -1,0 +1,7 @@
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\bin\Debug\7z.dll
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\bin\Debug\SevenZipSharp.xml
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\bin\Debug\SevenZipSharp.dll
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\bin\Debug\SevenZipSharp.pdb
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\obj\Debug\SevenZip.csproj.CoreCompileInputs.cache
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\obj\Debug\SevenZipSharp.dll
+C:\Users\Petar Stojanović\Source\Repos\7ZipLZMA\obj\Debug\SevenZipSharp.pdb
