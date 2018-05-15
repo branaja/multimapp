@@ -1,52 +1,6 @@
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\App.g.cs
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.g.resources
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
-C:\Users\Branimirko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\App.g.cs
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.g.resources
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\SevenZipSharp.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\SevenZipSharp.pdb
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\SevenZipSharp.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Auth.PlatformServices.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Core.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Drive.v2.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.PlatformServices.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\System.Net.Http.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\System.Security.Cryptography.Algorithms.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\System.Security.Cryptography.Encoding.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\System.Security.Cryptography.Primitives.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\System.Security.Cryptography.X509Certificates.dll
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Core.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Google.Apis.Drive.v2.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\Gallery.g.cs
-C:\Users\Branimirko\Documents\multimapp\WpfApp1\WpfApp1\obj\Debug\Gallery.baml
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\Gallery.g.cs
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\Petar Stojanović\Source\Repos\MultimApp\multimapp\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref

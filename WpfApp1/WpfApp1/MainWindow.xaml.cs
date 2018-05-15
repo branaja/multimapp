@@ -3,26 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Google.Apis.Drive.v2;
-using Google.Apis.Auth.OAuth2;
-using System.Threading;
-using Google.Apis.Util.Store;
-using Google.Apis.Services;
-using Google.Apis.Drive.v2.Data;
-using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 using System.IO;
-using System.Reflection;
+using Microsoft.WindowsAPICodePack.Dialogs;
+
+/// <summary>
+/// 1. Pascal Case kod metoda, općenito nekonzistentno
+/// 2. Nazivi buttona i to
+/// 3. OO - convert2jpg skriveno radi i save
+/// 4. Malo hrv malo eng
+/// 5. Gallery -> GalleryWindow
+/// 6. Fix naziv projekt
+/// 7. Zapravo treba omogućiti način rada da se odabere root folder i onda se rekurzivno sve konvertira i 7zipa.
+/// 8. Omogućiti izbor accounta 
+/// </summary>
 
 namespace WpfApp1
 {
@@ -44,7 +40,17 @@ namespace WpfApp1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             doneImg.Visibility = Visibility.Hidden;
+            //CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            //dialog.InitialDirectory = "";
+            //dialog.IsFolderPicker = true;
+            //if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            //{
+            //    listaPathova.Add(dialog.FileName);
+            //}
+
+            #region branimir
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
 
             //dlg.DefaultExt = ".png";
             dlg.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" +
@@ -52,8 +58,8 @@ namespace WpfApp1
             dlg.Multiselect = true;
 
             Nullable<bool> result = dlg.ShowDialog();
-           
-            
+
+
             //dodavanje slika u grid bi možda trebalo u zasebnoj dretvi ili nešta napraviti koja bi
             //dodavala slike u realnom vremenu?
             if (result == true)
@@ -70,9 +76,10 @@ namespace WpfApp1
                 }
                 noImg.Text = "Odabrano je " + listaPathova.Count() + " slika.";
             }
+            #endregion
         }
 
-        
+
 
         private void convertBttn_Click(object sender, RoutedEventArgs e)
         {
@@ -84,9 +91,10 @@ namespace WpfApp1
             }
         }
 
+        [Obsolete]
         private void convertBttn1_Click(object sender, RoutedEventArgs e)
         {
-            foreach(string img in listaPathova)
+            foreach (string img in listaPathova)
             {
                 //convert2jpg(img);
 
@@ -96,6 +104,7 @@ namespace WpfApp1
                 //Dispatcher.Invoke(() => { this.pBar.Value = i; });
             }
         }
+
         private void convert2jpg(string img, string savePath)
         {
             System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(img);
@@ -106,18 +115,15 @@ namespace WpfApp1
             System.Drawing.Imaging.Encoder myEncoder =
                 System.Drawing.Imaging.Encoder.Quality;
 
-            // Create an EncoderParameters object.
-            // An EncoderParameters object has an array of EncoderParameter
-            // objects. In this case, there is only one
-            // EncoderParameter object in the array.
             EncoderParameters myEncoderParameters = new EncoderParameters(1);
 
-            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 70L);
             myEncoderParameters.Param[0] = myEncoderParameter;
             string temp = savePath + "\\" + System.IO.Path.GetFileNameWithoutExtension(img) + ".jpg";
             bmp1.Save(temp, jgpEncoder,
                 myEncoderParameters);
         }
+
         private ImageCodecInfo GetEncoder(ImageFormat format)
         {
 
@@ -133,6 +139,7 @@ namespace WpfApp1
             return null;
         }
 
+        [Obsolete]
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             compress(savePath);
@@ -147,7 +154,9 @@ namespace WpfApp1
                 savename = zipName.Text;
             else
                 savename = zipName.Text + ".7z";
-            temp.CompressDirectory(savePath + "\\tempfolder", savePath + "\\" + savename);
+            //temp.CompressDirectory(savePath + "\\tempfolder", savePath + "\\" + savename); FIXME
+            temp.CompressDirectory(savePath, savePath + "\\" + savename);
+
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -157,26 +166,36 @@ namespace WpfApp1
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            System.IO.Directory.CreateDirectory(savePath+"\\tempfolder");
-            if(chkBox.IsChecked == true)
+            System.IO.Directory.CreateDirectory(savePath + "\\tempfolder");
+            if (chkBox.IsChecked == true)
             {
-                foreach(string img in listaPathova)
+                foreach (string img in listaPathova)
                 {
                     convert2jpg(img, savePath + "\\tempfolder");
                 }
-            } else
+            }
+            else
             {
-                foreach(string img in listaPathova)
+                foreach (string img in listaPathova)
                 {
-                    System.IO.File.Copy(img, savePath + "\\tempfolder\\" + System.IO.Path.GetFileName(img));
+                    System.IO.File.Copy(img, savePath + "\\tempfolder\\" + System.IO.Path.GetFileName(img));//FIXME
                 }
             }
 
-            compress(savePath);
+            compress(listaPathova[0]);//FIXME
 
             System.IO.Directory.Delete(savePath + "\\tempfolder", true);
 
-            doneImg.Visibility = Visibility.Visible;
+            //Drive.uploadFile(Drive.AuthenticateServiceAccount("serviceaccountmultim@multimapp-200019.iam.gserviceaccount.com", Environment.CurrentDirectory + "\\MultimApp-354bf7b31203.json"), savePath + "\\" + zipName.Text, null);
+            var uploadError = Drive.uploadFile(Drive.AuthenticateOauth(), savePath + "\\" + zipName.Text, null);
+            if (uploadError != null)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show(uploadError);
+            }
+            else
+            {
+                doneImg.Visibility = Visibility.Visible;
+            }
         }
 
         private void galleryBttn_Click(object sender, RoutedEventArgs e)
@@ -191,99 +210,7 @@ namespace WpfApp1
             noImg.Text = "Odabrano je " + listaPathova.Count() + " slika.";
         }
 
-        /*
-        private void auth()
-        {
-            string[] scopes = new string[] { DriveService.Scope.Drive }; // Full access
-
-            var keyFilePath = @"c:\file.p12";    // Downloaded from https://console.developers.google.com
-            var serviceAccountEmail = "branimir.jungic@gmail.com";  // found https://console.developers.google.com
-
-            //loading the Key file
-            var certificate = new X509Certificate2(keyFilePath, "notasecret", X509KeyStorageFlags.Exportable);
-            var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(serviceAccountEmail)
-            {
-                Scopes = scopes
-            }.FromCertificate(certificate));
-
-            var service = new DriveService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "Drive API Sample",
-            });
-
-
-        }
-
-        public static File createDirectory(DriveService _service, string _title, string _description, string _parent)
-        {
-
-            File NewDirectory = null;
-
-            // Create metaData for a new Directory
-            File body = new File();
-            body.Title = _title;
-            body.Description = _description;
-            body.MimeType = "application/vnd.google-apps.folder";
-            body.Parents = new List() { new ParentReference() { Id = _parent } };
-            try
-            {
-                FilesResource.InsertRequest request = _service.Files.Insert(body);
-                NewDirectory = request.Execute();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("An error occurred: " + e.Message);
-            }
-
-            return NewDirectory;
-        }
-
-        // tries to figure out the mime type of the file.
-        private static string GetMimeType(string fileName)
-        {
-            string mimeType = "application/unknown";
-            string ext = System.IO.Path.GetExtension(fileName).ToLower();
-            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
-            if (regKey != null && regKey.GetValue("Content Type") != null)
-                mimeType = regKey.GetValue("Content Type").ToString();
-            return mimeType;
-        }
-
-        public static File uploadFile(DriveService _service, string _uploadFile, string _parent) {
-            
-            if (System.IO.File.Exists(_uploadFile))
-            {
-                File body = new File();
-                body.Title = System.IO.Path.GetFileName(_uploadFile);
-                body.Description = "File uploaded by Diamto Drive Sample";
-                body.MimeType = GetMimeType(_uploadFile);
-                body.Parents = new List() { new ParentReference() { Id = _parent } };
-
-                // File's content.
-                byte[] byteArray = System.IO.File.ReadAllBytes(_uploadFile);
-                System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
-                try
-                {
-                    FilesResource.InsertMediaUpload request = _service.Files.Insert(body, stream, GetMimeType(_uploadFile));
-                    request.Upload();
-                    return request.ResponseBody;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("An error occurred: " + e.Message);
-                    return null;
-                }
-            }
-            else {
-                Console.WriteLine("File does not exist: " + _uploadFile);
-                return null;
-            }           
-        
-        }
-        */
-
     }
 
-   
+
 }
