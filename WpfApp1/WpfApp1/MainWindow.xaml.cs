@@ -27,27 +27,30 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<string> listaPathova;
+        private List<string> listOfPaths;
+        private string folderPath;
         private string savePath;
         public MainWindow()
         {
             InitializeComponent();
-            listaPathova = new List<string>();
+            listOfPaths = new List<string>();
             savePath = "";
             doneImg.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ChooseFolderButtonClick(object sender, RoutedEventArgs e)
         {
             doneImg.Visibility = Visibility.Hidden;
-            //CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            //dialog.InitialDirectory = "";
-            //dialog.IsFolderPicker = true;
-            //if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            //{
-            //    listaPathova.Add(dialog.FileName);
-            //}
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "";
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                folderPath=dialog.FileName;
+                savePath = folderPath;
+            }
 
+            /*
             #region branimir
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -64,7 +67,7 @@ namespace WpfApp1
             //dodavala slike u realnom vremenu?
             if (result == true)
             {
-                listaPathova.Clear();
+                listOfPaths.Clear();
                 // Open document 
                 if (dlg.FileNames != null && dlg.FileNames.Count() > 0)
                 {
@@ -72,56 +75,78 @@ namespace WpfApp1
                 }
                 foreach (string filename in dlg.FileNames)
                 {
-                    listaPathova.Add(filename);
+                    listOfPaths.Add(filename);
                 }
-                noImg.Text = "Odabrano je " + listaPathova.Count() + " slika.";
+                noImg.Text = "Odabrano je " + listOfPaths.Count() + " slika.";
             }
             #endregion
+            */
         }
 
 
 
-        private void convertBttn_Click(object sender, RoutedEventArgs e)
+        private void WhatDoesThisButtonDo(object sender, RoutedEventArgs e)
         {
+            /*
             var dlg = new System.Windows.Forms.FolderBrowserDialog();
             var result = dlg.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 savePath = dlg.SelectedPath;
             }
+            */
         }
 
         [Obsolete]
         private void convertBttn1_Click(object sender, RoutedEventArgs e)
         {
-            foreach (string img in listaPathova)
+            foreach (string img in listOfPaths)
             {
                 //convert2jpg(img);
 
 
                 //update progressbara ne radi u realnom vremenu :( 
-                int i = (listaPathova.IndexOf(img) + 1) / listaPathova.Count() * 100;
+                int i = (listOfPaths.IndexOf(img) + 1) / listOfPaths.Count() * 100;
                 //Dispatcher.Invoke(() => { this.pBar.Value = i; });
             }
         }
 
-        private void convert2jpg(string img, string savePath)
+        private void ConvertToJPGAndSave(string folderPath, string savePath)
         {
-            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(img);
-            ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+            foreach(string file in Directory.GetFileSystemEntries(folderPath))
+            {
+                if(File.Exists(file))
+                {
+                    //it's a file
+                    System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
+                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
 
-            // Create an Encoder object based on the GUID
-            // for the Quality parameter category.
-            System.Drawing.Imaging.Encoder myEncoder =
-                System.Drawing.Imaging.Encoder.Quality;
+                    // Create an Encoder object based on the GUID
+                    // for the Quality parameter category.
+                    System.Drawing.Imaging.Encoder myEncoder =
+                        System.Drawing.Imaging.Encoder.Quality;
 
-            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
 
-            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 70L);
-            myEncoderParameters.Param[0] = myEncoderParameter;
-            string temp = savePath + "\\" + System.IO.Path.GetFileNameWithoutExtension(img) + ".jpg";
-            bmp1.Save(temp, jgpEncoder,
-                myEncoderParameters);
+                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 70L);
+                    myEncoderParameters.Param[0] = myEncoderParameter;
+                    string temp = savePath + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".jpg";
+                    bmp1.Save(temp, jgpEncoder,
+                        myEncoderParameters);
+                }
+                else if (Directory.Exists(file))
+                {
+                    //it's a folder
+
+                    //check folder name, don't loop back into tempfolder
+                    if (System.IO.Path.GetFileName(file) != "tempfolder")
+                    {
+                        System.IO.Directory.CreateDirectory(savePath + "\\" + System.IO.Path.GetFileName(file));
+                        ConvertToJPGAndSave(file, savePath + "\\" + System.IO.Path.GetFileName(file));
+                    }
+                }
+            }
+            
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
@@ -142,10 +167,10 @@ namespace WpfApp1
         [Obsolete]
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            compress(savePath);
+            CompressFolder(savePath);
         }
 
-        private void compress(string savePath)
+        private void CompressFolder(string savePath)
         {
             var temp = new SevenZipCompressor();
             temp.ScanOnlyWritable = true;
@@ -154,8 +179,8 @@ namespace WpfApp1
                 savename = zipName.Text;
             else
                 savename = zipName.Text + ".7z";
-            //temp.CompressDirectory(savePath + "\\tempfolder", savePath + "\\" + savename); FIXME
-            temp.CompressDirectory(savePath, savePath + "\\" + savename);
+            temp.CompressDirectory(savePath + "\\tempfolder", savePath + "\\" + savename); 
+            //temp.CompressDirectory(savePath, savePath + "\\" + savename);
 
         }
 
@@ -164,29 +189,31 @@ namespace WpfApp1
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void GOButtonClick(object sender, RoutedEventArgs e)
         {
             System.IO.Directory.CreateDirectory(savePath + "\\tempfolder");
             if (chkBox.IsChecked == true)
             {
-                foreach (string img in listaPathova)
-                {
-                    convert2jpg(img, savePath + "\\tempfolder");
-                }
+                ConvertToJPGAndSave(folderPath, savePath + "\\tempfolder");
+                
             }
             else
             {
-                foreach (string img in listaPathova)
+                //ovo ne radi još!
+                foreach (string img in listOfPaths)
                 {
                     System.IO.File.Copy(img, savePath + "\\tempfolder\\" + System.IO.Path.GetFileName(img));//FIXME
                 }
             }
 
-            compress(listaPathova[0]);//FIXME
+            CompressFolder(savePath);
 
             System.IO.Directory.Delete(savePath + "\\tempfolder", true);
 
-            //Drive.uploadFile(Drive.AuthenticateServiceAccount("serviceaccountmultim@multimapp-200019.iam.gserviceaccount.com", Environment.CurrentDirectory + "\\MultimApp-354bf7b31203.json"), savePath + "\\" + zipName.Text, null);
+            
+           
+            /*
+            Drive.uploadFile(Drive.AuthenticateServiceAccount("serviceaccountmultim@multimapp-200019.iam.gserviceaccount.com", Environment.CurrentDirectory + "\\MultimApp-354bf7b31203.json"), savePath + "\\" + zipName.Text, null);
             var uploadError = Drive.uploadFile(Drive.AuthenticateOauth(), savePath + "\\" + zipName.Text, null);
             if (uploadError != null)
             {
@@ -196,18 +223,20 @@ namespace WpfApp1
             {
                 doneImg.Visibility = Visibility.Visible;
             }
+            */
+            
         }
 
-        private void galleryBttn_Click(object sender, RoutedEventArgs e)
+        private void GalleryButtonClick(object sender, RoutedEventArgs e)
         {
-            Gallery gallery = new Gallery(listaPathova, this);
+            Gallery gallery = new Gallery(listOfPaths, this);
             gallery.Show();
         }
 
-        public void deleteImage(int index)
+        public void DeleteImage(int index)
         {
-            listaPathova.RemoveAt(index);
-            noImg.Text = "Odabrano je " + listaPathova.Count() + " slika.";
+            listOfPaths.RemoveAt(index);
+            noImg.Text = "Odabrano je " + listOfPaths.Count() + " slika.";
         }
 
     }
