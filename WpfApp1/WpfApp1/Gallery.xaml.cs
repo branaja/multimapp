@@ -96,7 +96,7 @@ namespace WpfApp1
             Image img = (Image)sender;
             int index = gridImg.Children.IndexOf(img);
             img.Opacity = 0;
-            parent.deleteImage(index);
+            parent.DeleteImage(index);
             gridImg.Children.RemoveAt(index);
         }
     }
