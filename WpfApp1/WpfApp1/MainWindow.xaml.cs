@@ -8,16 +8,16 @@ using Google.Apis.Drive.v2;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using MultimAPP;
 
 /// <summary>
-/// 1. Pascal Case kod metoda, općenito nekonzistentno
-/// 2. Nazivi buttona i to
-/// 3. OO - convert2jpg skriveno radi i save
+/// 1. Pascal Case kod metoda
+/// 2. Nazivi buttona i varijabli
 /// 4. Malo hrv malo eng
 /// 5. Gallery -> GalleryWindow
-/// 6. Fix naziv projekt
 /// 7. Zapravo treba omogućiti način rada da se odabere root folder i onda se rekurzivno sve konvertira i 7zipa.
 /// 8. Omogućiti izbor accounta 
+/// 9. Elegantno riješiti problem izbora jedne od mogućnosti rada programa.
 /// </summary>
 
 namespace WpfApp1
@@ -84,7 +84,9 @@ namespace WpfApp1
         }
 
 
-
+        /// <summary>
+        /// Hahahaha ovo je jeben naming
+        /// </summary>
         private void WhatDoesThisButtonDo(object sender, RoutedEventArgs e)
         {
             /*
@@ -97,6 +99,10 @@ namespace WpfApp1
             */
         }
 
+        /// <summary>
+        /// Ne znam jesi li primjetio obsolete atribut, ako pokušamo koristiti ovu metodu negdje u programu dobit ćemo warning.
+        /// Postoji još i deprecated, funkcionira analogno ovome.
+        /// </summary>
         [Obsolete]
         private void convertBttn1_Click(object sender, RoutedEventArgs e)
         {
@@ -115,9 +121,9 @@ namespace WpfApp1
         {
             foreach(string file in Directory.GetFileSystemEntries(folderPath))
             {
-                if(File.Exists(file))
+                if( file.IsImage() )
                 {
-                    //it's a file
+                    //it's an image
                     System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
                     ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
 
@@ -136,7 +142,7 @@ namespace WpfApp1
                 }
                 else if (Directory.Exists(file))
                 {
-                    //it's a folder
+                    //it's a folder or something else
 
                     //check folder name, don't loop back into tempfolder
                     if (System.IO.Path.GetFileName(file) != "tempfolder")
@@ -240,6 +246,4 @@ namespace WpfApp1
         }
 
     }
-
-
 }
