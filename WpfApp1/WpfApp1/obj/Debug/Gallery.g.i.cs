@@ -60,7 +60,7 @@ namespace WpfApp1 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MultimAPP;component/gallery.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfApp1;component/gallery.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Gallery.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
