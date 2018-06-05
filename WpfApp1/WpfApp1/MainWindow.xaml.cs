@@ -199,11 +199,7 @@ namespace WpfApp1
             }
             else
             {
-                //ovo ne radi još!
-                foreach (string img in listOfPaths)
-                {
-                    System.IO.File.Copy(img, savePath + "\\tempfolder\\" + System.IO.Path.GetFileName(img));//FIXME
-                }
+                
             }
 
             CompressFolder(savePath);
