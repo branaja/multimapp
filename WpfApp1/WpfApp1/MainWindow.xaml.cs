@@ -67,6 +67,7 @@ namespace WpfApp1
 
             this.strategy.Execute(savePath, zipName.Text);
 
+            doneImg.Visibility = Visibility.Visible;
 
             
            

@@ -10,7 +10,7 @@ namespace MultimAPP
     {
         public void Execute(string path, string zipName)
         {
-            throw new NotImplementedException();
+            Util.CompressFolder(path, zipName);
         }
     }
 }

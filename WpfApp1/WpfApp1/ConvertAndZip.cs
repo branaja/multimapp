@@ -51,13 +51,12 @@ namespace MultimAPP
         
         public void Execute(string path, string zipName)
         {
-            System.IO.Directory.CreateDirectory(path + "\\tempfolder");
+            string savePath = System.IO.Directory.GetParent(path) + "\\tempfolder";
+            System.IO.Directory.CreateDirectory(savePath);
 
-            ConvertToJPGAndSave(path, path + "\\tempfolder");
-            Util.CompressFolder(path, zipName);
-            System.IO.Directory.Delete(path + "\\tempfolder", true);
-
-            throw new NotImplementedException();
+            ConvertToJPGAndSave(path, savePath);
+            Util.CompressFolder(savePath, zipName);
+            System.IO.Directory.Delete(savePath, true);
         }
     }
 }

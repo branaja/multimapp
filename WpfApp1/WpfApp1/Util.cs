@@ -20,7 +20,7 @@ namespace MultimAPP
                 savename = zipName;
             else
                 savename = zipName + ".7z";
-            temp.CompressDirectory(savePath + "\\tempfolder", System.IO.Directory.GetParent(savePath) + "\\" + savename);
+            temp.CompressDirectory(savePath , System.IO.Directory.GetParent(savePath) + "\\" + savename);
         }
 
         internal static ImageCodecInfo GetEncoder(ImageFormat format)
