@@ -12,7 +12,7 @@
                   ,0,0" IsChecked="True" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         <TextBlock x:Name="noImg" Margin="0,100,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Visibility="Hidden"><Run Text="Odabrano je 0 slika."/></TextBlock>
         <Button x:Name="galleryBttn" Content="Prikaži odabrane" Margin="140,224,140,108.8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Image x:Name="doneImg" HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="135" Margin="140,260,140,0.2" Source="done.png"/>
+        <Image x:Name="doneImg" HorizontalAlignment="Center" Height="135" VerticalAlignment="Center" Width="135" Margin="140,260,140,0.2" Source="done.png" Stretch="None"/>
         <Grid VerticalAlignment="Center" Height="34" Width="189" Margin="111,135,112,226.2">
             <TextBox x:Name="zipName" Margin="67,0,0,0" TextWrapping="Wrap" Text="eST.7z" TextAlignment="Center" VerticalContentAlignment="Stretch" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Spremi kao:" VerticalAlignment="Top" Height="28" TextAlignment="Center"/>
